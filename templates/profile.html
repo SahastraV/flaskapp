@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Profile Page</h1>
+    <p>Username: {{ user[1] }}</p>
+    <p>First Name: {{ user[3] }}</p>
+    <p>Last Name: {{ user[4] }}</p>
+    <p>Email: {{ user[5] }}</p>
+
+    <h2>Upload Limerick File</h2>
+    <form action="/profile/{{ user[1] }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="limerick_file" required>
+        <input type="submit" value="Upload">
+    </form>
+
+    {% if user[6] %}
+    <p>Uploaded File: <a href="{{ url_for('download_file', filename=user[6]) }}">{{ user[6] }}</a></p>
+    <p>Word Count: {{ user[7] }}</p>
+    {% endif %}
+</body>
+</html>
